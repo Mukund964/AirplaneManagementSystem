@@ -8,6 +8,7 @@ class CityRepository{
             return city;
         }catch(error){
             console.log(error);
+            throw {error};
         }
     }
 
@@ -18,10 +19,32 @@ class CityRepository{
                     id : cityId
                 }
             })
+            return true;
         }catch(err){
             console.log(error);
+            throw {error}
         }
 
+    }
+
+    async updateCity(cityId,data){
+        try {
+            const response = await City.update(cityId,data);
+            return response;
+        } catch (error) {
+            console.log(error);
+            throw{error};
+        }
+    }
+
+    async getCity(cityId){
+        try {
+            const city = await City.findbypk(cityId);
+            return city;
+        } catch (error) {
+            console.log(error);
+            throw {error};
+        }
     }
 };
 
