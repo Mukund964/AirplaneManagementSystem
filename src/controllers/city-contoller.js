@@ -1,6 +1,6 @@
-const {cityService, cityService} = require('../services/index');
+const {CityService} = require('../services/index');
 
-const cityService = new cityService();
+const cityService = new CityService();
 const create = async (req,res)=>{
     // post req.body 
     try {
@@ -21,7 +21,7 @@ const create = async (req,res)=>{
         })
     }
 }
-const destroy = async (req,res)=>{
+const remove = async (req,res)=>{
     // delete/:id -- req.params.id
     try {
         const response = await cityService.destroy(req.params.id);
@@ -32,7 +32,7 @@ const destroy = async (req,res)=>{
             err : {}
         })
     } catch (error) {
-        console.log("at controller" , error);
+        console.log("at controller" , {error});
         res.status(500).json({
             data : {},
             message: "not deleted succesfully",
@@ -86,7 +86,7 @@ const fetch = async (req,res)=>{
 
 module.exports = {
     create,
-    destroy,
+    remove,
     update,
     fetch
 }
