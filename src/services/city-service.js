@@ -42,5 +42,14 @@ class CityService{
             throw {error};
         }
     }
+    async getall(){
+        try {
+            const cities = this.cityRepo.getallcity();
+            return cities;
+        } catch (error) {
+            console.log("at service layer",error);
+            throw {error};
+        }
+    }
 }
 module.exports = CityService;

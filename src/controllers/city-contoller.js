@@ -84,9 +84,25 @@ const fetch = async (req,res)=>{
     }
 }
 
+const findall = async (req,res) => {
+    try {
+        const allcity = await cityService.getall();
+        res.status(201).json({
+            data : allcity,
+            message: "Cities fetched successfully",
+            success : true,
+            err : {}
+        })
+    } catch (error) {
+        console.log("at controller",error);
+        throw {error};
+    }
+}
+
 module.exports = {
     create,
     remove,
     update,
-    fetch
+    fetch,
+    findall
 }
