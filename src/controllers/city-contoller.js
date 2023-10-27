@@ -86,7 +86,7 @@ const fetch = async (req,res)=>{
 
 const findall = async (req,res) => {
     try {
-        const allcity = await cityService.getall();
+        const allcity = await cityService.getall(req.query);
         res.status(201).json({
             data : allcity,
             message: "Cities fetched successfully",

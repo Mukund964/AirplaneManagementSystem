@@ -1,5 +1,6 @@
 // repos are used to communicate with the database 
 const {City} = require('../models/index');
+const { Op } = require("sequelize");
 
 class CityRepository{
     async createCity({Name}){
@@ -54,8 +55,18 @@ class CityRepository{
             throw {error};
         }
     }
-    async getallcity(){
+    async getallcity(filter){
         try {
+            if(filter.name) {
+                let cities = await City.findOne({
+                    where : {
+                        Name : {
+                            [Op.startsWith]: filter.name
+                        }
+                    }
+                });
+                return cities;
+            }
             const cities = await City.findAll();
             return cities;
         } catch (error) {

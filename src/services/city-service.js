@@ -42,8 +42,12 @@ class CityService{
             throw {error};
         }
     }
-    async getall(){
+    async getall(filter){
         try {
+            if(filter){
+                const cities = this.cityRepo.getallcity(filter);
+                return cities;
+            }
             const cities = this.cityRepo.getallcity();
             return cities;
         } catch (error) {
