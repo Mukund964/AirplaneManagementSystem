@@ -94,13 +94,40 @@ const findall = async (req,res) => {
             err : {}
         })
     } catch (error) {
-        console.log("at controller",error);
-        throw {error};
+        console.log("at controller" , error);
+        res.status(500).json({
+            data : {},
+            message: "not able to fetch succesfully",
+            success : false,
+            err : {error}
+        })
+    }
+}
+
+const createMany = async (req,res) =>{
+    try {
+        const response = await cityService.createCities(req.body);
+        res.status(201).json({
+            data : {},
+            message: "Cities created successfully",
+            success : true,
+            err : {}
+        })
+
+    } catch (error) {
+        console.log("at controller" , error);
+        res.status(500).json({
+            data : {},
+            message: "not able to Add succesfully",
+            success : false,
+            err : {error}
+        })
     }
 }
 
 module.exports = {
     create,
+    createMany,
     remove,
     update,
     fetch,

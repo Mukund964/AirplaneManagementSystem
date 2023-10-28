@@ -74,6 +74,17 @@ class CityRepository{
             throw {error};
         }
     }
+
+    async createMany(data){
+        try {
+            const citiesData = data.Name.map(Name => ({ Name }));
+            const response = await City.bulkCreate(citiesData);
+            return response;
+        } catch (error) {
+            console.log("at repository",error);
+            throw {error};
+        }
+    }
 };
 
 module.exports = CityRepository;

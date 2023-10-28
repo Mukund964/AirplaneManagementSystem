@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const {PORT} = require('./config/serverConfig');
 const ApiRoutes = require('./routers/index');
 const db = require('./models/index');
-const {City,Airport} = require('./models/index');
 
 const setupServer = async ()=>{
     const app = express();
@@ -18,30 +17,6 @@ const setupServer = async ()=>{
         if(process.env.SYNC){
             db.sequelize.sync({alter : true});
         }
-        /*const airports = await Airport.findAll({
-            include : [{
-                model : City
-            }]
-        })
-        console.log(airports);*/
-
-        /*const city = await City.findOne({
-            where : {
-                id : 1
-            }
-        }) */
-       /* const newAirport = await Airport.create({
-            name : "Muzaffarpur Airport",
-            city_Id : 5
-        })*/
-       /* const newAirport = await Airport.findAll({
-            where :{
-                city_Id : 1
-            }
-        }); */
-        //await city.addAirport(newAirport);
-        //console.log(airports);
-
     })
 };
 setupServer();

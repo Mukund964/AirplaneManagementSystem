@@ -55,5 +55,15 @@ class CityService{
             throw {error};
         }
     }
+
+    async createCities(data){
+        try {
+            const response = this.cityRepo.createMany(data);
+            return response;
+        } catch (error) {
+            console.log("at service layer",error);
+            throw {error};
+        }
+    }
 }
 module.exports = CityService;
