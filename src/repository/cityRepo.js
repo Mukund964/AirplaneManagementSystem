@@ -77,8 +77,7 @@ class CityRepository{
 
     async createMany(data){
         try {
-            const citiesData = data.Name.map(Name => ({ Name }));
-            const response = await City.bulkCreate(citiesData);
+            const response = await City.bulkCreate(data);
             return response;
         } catch (error) {
             console.log("at repository",error);
