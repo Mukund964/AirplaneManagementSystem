@@ -61,8 +61,30 @@ const findFlights = async (req,res) =>{
     })
     }
 }
+
+const updateFlight = async (req,res) =>{
+    try {
+        console.log("Entered update");
+        const flight = await flightService.updateFlight(req.params.id,req.body);
+        res.status(201).json({
+            data : flight,
+            message: "Flight updated successfully",
+            success : true,
+            err : {}
+        })
+    } catch (error) {
+        console.log("at controller" , error);
+        res.status(500).json({
+        data : {},
+        message: "Flight not updated succesfully",
+        success : false,
+        err : {error}
+    })
+    }
+}
 module.exports = {
     createFlight,
     getFlight,
-    findFlights
+    findFlights,
+    updateFlight
 }

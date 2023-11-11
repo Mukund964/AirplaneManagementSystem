@@ -60,6 +60,20 @@ class FlightRepository{
             throw {error};
         }
     }
+
+    async updateFlight(flightId,data){
+        try {
+            const flight = await Flight.update(data,{
+                where : {
+                    id : flightId
+                }
+            });
+            return true;
+        } catch (error) {
+            console.log("at repo",error);
+            throw {error};
+        }
+    }
 }
 
 
